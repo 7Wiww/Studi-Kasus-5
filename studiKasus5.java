@@ -1,4 +1,4 @@
-package Modulsmt2;
+package smt2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,6 +16,7 @@ public class studiKasus5 {
             System.out.println("1. Tambah Buku");
             System.out.println("2. Hapus Buku");
             System.out.println("3. Cari Buku");
+            System.out.println("4. Tampilkan semua Buku");
             System.out.println("Keluar");
     
             System.out.print("Pilih menu : ");
@@ -73,33 +74,45 @@ public class studiKasus5 {
                         System.out.println("Kategori buku yang dipilih adalah Sains.");
                         System.out.print("Masukkan judul buku : ");
                         judulBuku = scanner.nextLine();
-                        tambahBuku(buku, kategoriHapus ,judulBuku);
+                        hapusBuku(buku, kategoriHapus, judulBuku);
                     } else if (kategoriHapus == 3) {
                         System.out.println("Kategori buku yang dipilih adalah Sosial.");
                         System.out.print("Masukkan judul buku : ");
                         judulBuku = scanner.nextLine();
-                        tambahBuku(buku, kategoriHapus ,judulBuku);
+                        hapusBuku(buku, kategoriHapus, judulBuku);;
                     } else {
                         System.out.println("Pilihan tidak valid");
                     }
                 }
                     break;
-                case 3:
+                case 3: {
                     System.out.println("Pilih kategori apa yang ingin dicari");
                     System.out.println("1. Teknologi");
                     System.out.println("2. Sains");
                     System.out.println("3. Sosial");
 
-                    System.out.println("Kategori buku : ");
-                    int kategori3 = scanner.nextInt();
-                    System.out.println("Cari judul buku : ");
-                    String cari = scanner.nextLine();
+                    System.out.print("Kategori buku : ");
+                    int kategoriCari = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.print("Cari judul buku : ");
+                    String judulBuku = scanner.nextLine();
+                    cariBuku(buku, judulBuku);
+                }
                     break;
+                case 4: {
+                    display();
+                }
+                    break;
+                case 5: {
+                    System.out.println("Anda telah keluar.");
+                }
             
                 default:
+                    System.out.println("Angka tidak valid.");
                     break;
             }
-        } while (pilihan != 4);
+        } while (pilihan != 5);
     }
 
     public void tambahBuku(ArrayList<String> buku, int kategoriTambah, String judulBuku) {
@@ -125,6 +138,20 @@ public class studiKasus5 {
         } else if (kategoriHapus == 3) {
             buku.remove(judulBuku);
             System.out.println("Buku dengan judul " +judulBuku +" berhasil dihapus");
+        }
+    }
+
+    public void cariBuku(ArrayList<String> buku, String judulBuku) {
+        if (buku.contains(judulBuku)) {
+            System.out.println("Buku " +judulBuku +" ditemukan.");
+        } else {
+            System.out.println("Buku " +judulBuku +" tidak ditemukan");
+        }
+    }
+
+    public void display() {
+        for (int i=0; i<buku.size(); i++) {
+            System.out.println("1. " +buku.get(i));
         }
     }
 
